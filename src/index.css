@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fuente base y fondo */
+body {
+  @apply font-sans bg-white text-slate-800;
+}
+
+/* Contenedor principal */
+.container {
+  @apply mx-auto px-4;
+}
