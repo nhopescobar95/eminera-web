@@ -592,7 +592,7 @@ export default function App() {
                   <div className="flex justify-center mb-3 text-white/20 group-hover:text-white/80 transition-colors">
                     <stat.icon size={32} style={{ color: stat.color }} />
                   </div>
-                  <h3 className="text-4xl font-black text-white mb-1">{count}{index === 3 ? '%' : '+'}</h3>
+                  <h3 className="text-4xl font-black text-white mb-1">{count}{index === 3 ? '%' : index === 0 ? '' : '+'}</h3>
                   <p className="text-sm font-medium text-gray-400 uppercase tracking-wider">{stat.label}</p>
                 </div>
               );
