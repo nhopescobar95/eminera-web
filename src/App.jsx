@@ -408,6 +408,26 @@ const EventRegistration = () => {
   );
 };
 
+// Componente Formulario Typeform
+const JoinForm = () => (
+  <section id="unete" className="py-24 bg-slate-50 relative overflow-hidden">
+    <div className="absolute inset-0 bg-white" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 15%, 0 0%)', zIndex: 0 }}></div>
+    <div className="container mx-auto px-4 relative z-10">
+      <SectionTitle>Únete a nosotras</SectionTitle>
+      <Reveal variant="fade-up">
+        <div className="w-full h-[600px] md:h-[800px] bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+          <iframe
+            src="https://form.typeform.com/to/KFDhBAHs"
+            style={{ width: '100%', height: '100%', border: 'none' }}
+            title="Formulario de Inscripción E+Mineras"
+            allow="camera; microphone; autoplay; encrypted-media;"
+          ></iframe>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+);
+
 // --- Main App ---
 
 export default function App() {
@@ -445,6 +465,7 @@ export default function App() {
     { id: 'directorio', title: 'Directorio', color: COLORS.accent1 },
     { id: 'objetivos', title: 'Objetivos', color: COLORS.accent2 },
     { id: 'programas', title: 'Programas', color: COLORS.primary },
+    { id: 'unete', title: 'Únete a nosotras', color: COLORS.secondary },
     { id: 'inscripcion', title: 'Inscripción Evento', color: COLORS.primary },
     { id: 'noticias', title: 'Noticias', color: COLORS.accent2 },
     { id: 'contacto', title: 'Contacto', color: COLORS.accent1 },
@@ -728,6 +749,8 @@ export default function App() {
         </div>
       </section>
 
+      <JoinForm />
+
       <EventRegistration />
 
       <section id="noticias" className="py-24 bg-slate-50">
@@ -825,6 +848,6 @@ export default function App() {
           <p className="text-gray-600 text-sm">&copy; {new Date().getFullYear()} Todos los derechos reservados.</p>
         </div>
       </footer>
-    </div>
+    </div >
   );
 }
