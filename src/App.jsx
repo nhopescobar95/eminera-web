@@ -506,7 +506,7 @@ export default function App() {
             </h1>
             <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-light">Conectamos el talento y liderazgo femenino con las oportunidades de la industria para transformar el futuro desde el norte de Chile.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <a href="#contacto" className="bg-slate-900/80 backdrop-blur-md border border-white/20 text-white font-bold py-4 px-10 rounded-full transition-all shadow-xl flex items-center justify-center group overflow-hidden relative hover:shadow-2xl hover:-translate-y-1">
+              <a href="#unete" className="bg-slate-900/80 backdrop-blur-md border border-white/20 text-white font-bold py-4 px-10 rounded-full transition-all shadow-xl flex items-center justify-center group overflow-hidden relative hover:shadow-2xl hover:-translate-y-1">
                 <span className="relative z-10 flex items-center">Únete a nosotras <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
                 <div className="absolute inset-0 bg-gradient-to-r from-slate-900 to-slate-800 group-hover:from-brand-purple group-hover:to-brand-primary transition-colors duration-500 opacity-0 group-hover:opacity-100 z-0"></div>
               </a>
