@@ -392,7 +392,7 @@ export default function App() {
     { id: 'objetivos', title: 'Objetivos', color: COLORS.accent2 },
     { id: 'programas', title: 'Programas', color: COLORS.primary },
     { id: 'unete', title: 'Únete a nosotras', color: COLORS.secondary },
-
+    { id: 'inscripcion-evento', title: 'Inscripción Evento', color: COLORS.primary },
     { id: 'noticias', title: 'Noticias', color: COLORS.accent2 },
     { id: 'contacto', title: 'Contacto', color: COLORS.accent1 },
   ];
@@ -677,6 +677,24 @@ export default function App() {
 
       <JoinForm />
 
+      <section id="inscripcion-evento" className="py-24 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-teal opacity-10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange opacity-10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <SectionTitle>Inscripción al Evento</SectionTitle>
+          <Reveal variant="fade-up">
+            <div className="w-full h-[700px] md:h-[900px] bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+              <iframe
+                src="https://forms.cloud.microsoft/e/UnmXf3wKtX"
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                title="Formulario de Inscripción al Evento E+Mineras"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
 
       <section id="noticias" className="py-24 bg-slate-50">
