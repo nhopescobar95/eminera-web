@@ -320,93 +320,7 @@ const NewsModal = ({ news, onClose }) => {
   );
 };
 
-// Componente Registro Evento
-const EventRegistration = () => {
-  const [formData, setFormData] = useState({ nombre: '', email: '', telefono: '', organizacion: '', cargo: '' });
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-  const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true); };
-
-  return (
-    <section id="inscripcion" className="py-24 bg-slate-50 relative overflow-hidden">
-      <div className="absolute inset-0 bg-white" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)', zIndex: 0 }}></div>
-      <div className="absolute top-0 right-0 w-64 h-64 bg-brand-teal opacity-10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange opacity-10 rounded-full -ml-32 -mb-32 blur-3xl" style={{ animationDelay: '1s' }}></div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <SectionTitle>Inscripción al Meet Up</SectionTitle>
-
-        <Reveal variant="zoom-in">
-          <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-shadow duration-500">
-            <div className="lg:w-2/5 p-10 text-white flex flex-col justify-between relative bg-slate-900">
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-brand-purple opacity-90"></div>
-              <div className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-30" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80)' }}></div>
-
-              <div className="relative z-10">
-                <span className="inline-block px-3 py-1 bg-brand-orange text-white text-xs font-bold uppercase tracking-widest rounded-full mb-6">Evento Fin de Año</span>
-                <h3 className="text-3xl font-black mb-4 leading-tight">Meet UP: Mujeres, Minería y Desarrollo</h3>
-                <div className="space-y-4 text-sm mt-8">
-                  <div className="flex items-start group">
-                    <Calendar className="w-5 h-5 mr-3 text-brand-teal flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                    <div>
-                      <p className="font-bold text-white">Jueves 04 de Diciembre</p>
-                      <p className="text-gray-400">A partir de las 08:30 hrs</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start group">
-                    <MapPin className="w-5 h-5 mr-3 text-brand-teal flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                    <div>
-                      <p className="font-bold text-white">Hotel Antofagasta</p>
-                      <p className="text-gray-400">Av. Balmaceda 2575, Antofagasta</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:w-3/5 p-10">
-              {submitted ? (
-                <div className="h-full flex flex-col items-center justify-center text-center">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                    <Check className="w-10 h-10 text-green-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">¡Inscripción Exitosa!</h3>
-                  <p className="text-gray-600 mb-8">Hemos recibido tus datos correctamente.</p>
-                  <button onClick={() => setSubmitted(false)} className="text-brand-primary font-semibold hover:underline">Inscribir a otra persona</button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <h4 className="text-xl font-bold text-slate-800 mb-6">Completa tus datos</h4>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {['Nombre y Apellido', 'Correo Electrónico'].map((label, i) => (
-                      <div key={i} className="space-y-2 group">
-                        <label className="text-sm font-bold text-slate-700 flex items-center group-focus-within:text-brand-primary transition-colors">
-                          {i === 0 ? <User className="w-4 h-4 mr-2 text-brand-orange" /> : <Mail className="w-4 h-4 mr-2 text-brand-orange" />}
-                          {label} *
-                        </label>
-                        <input required type={i === 1 ? 'email' : 'text'} name={i === 0 ? 'nombre' : 'email'} onChange={handleChange} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 ring-brand-primary focus:border-transparent transition-all outline-none" />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="space-y-2"><label className="text-sm font-bold text-slate-700 flex items-center"><Phone className="w-4 h-4 mr-2 text-brand-orange" /> Teléfono *</label><input required type="tel" name="telefono" onChange={handleChange} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 ring-brand-primary outline-none" /></div>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2"><label className="text-sm font-bold text-slate-700 flex items-center"><Building className="w-4 h-4 mr-2 text-brand-orange" /> Organización *</label><input required type="text" name="organizacion" onChange={handleChange} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 ring-brand-primary outline-none" /></div>
-                    <div className="space-y-2"><label className="text-sm font-bold text-slate-700 flex items-center"><Briefcase className="w-4 h-4 mr-2 text-brand-orange" /> Cargo *</label><input required type="text" name="cargo" onChange={handleChange} className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 ring-brand-primary outline-none" /></div>
-                  </div>
-                  <button type="submit" className="w-full py-4 rounded-xl bg-slate-900 text-white font-bold text-lg hover:bg-brand-primary hover:shadow-lg transition-all transform hover:-translate-y-1 mt-4 relative overflow-hidden group">
-                    <span className="relative z-10">Confirmar Asistencia</span>
-                    <div className="absolute inset-0 bg-brand-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-};
 
 // Componente Formulario Typeform
 const JoinForm = () => (
@@ -466,8 +380,7 @@ export default function App() {
     { id: 'directorio', title: 'Directorio', color: COLORS.accent1 },
     { id: 'objetivos', title: 'Objetivos', color: COLORS.accent2 },
     { id: 'programas', title: 'Programas', color: COLORS.primary },
-    { id: 'unete', title: 'Únete a nosotras', color: COLORS.secondary },
-    { id: 'inscripcion', title: 'Inscripción Evento', color: COLORS.primary },
+    { id: 'unete', title: 'Inscripción Evento', color: COLORS.secondary },
     { id: 'noticias', title: 'Noticias', color: COLORS.accent2 },
     { id: 'contacto', title: 'Contacto', color: COLORS.accent1 },
   ];
@@ -751,8 +664,6 @@ export default function App() {
       </section>
 
       <JoinForm />
-
-      <EventRegistration />
 
       <section id="noticias" className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
