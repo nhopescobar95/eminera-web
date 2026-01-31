@@ -321,20 +321,33 @@ const NewsModal = ({ news, onClose }) => {
 };
 
 
-// Componente Formulario Typeform
+// Componente Aviso Próximamente
 const JoinForm = () => (
   <section id="unete" className="py-24 bg-slate-50 relative overflow-hidden">
     <div className="absolute inset-0 bg-white" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 15%, 0 0%)', zIndex: 0 }}></div>
     <div className="container mx-auto px-4 relative z-10">
       <SectionTitle>Únete a nosotras</SectionTitle>
       <Reveal variant="fade-up">
-        <div className="w-full h-[600px] md:h-[800px] bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-          <iframe
-            src="https://form.typeform.com/to/KFDhBAHs"
-            style={{ width: '100%', height: '100%', border: 'none' }}
-            title="Formulario de Inscripción E+Mineras"
-            allow="camera; microphone; autoplay; encrypted-media;"
-          ></iframe>
+        <div className="max-w-2xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 p-12 text-center">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ backgroundColor: `${COLORS.primary}20` }}>
+            <Sparkles className="w-10 h-10" style={{ color: COLORS.primary }} />
+          </div>
+          <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            ¡Próximamente!
+          </h3>
+          <p className="text-gray-600 text-lg leading-relaxed mb-8">
+            Estamos preparando un nuevo formulario de inscripción para que puedas unirte a nuestra comunidad de mujeres líderes en minería y energía.
+          </p>
+          <div className="inline-flex items-center px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider" style={{ backgroundColor: `${COLORS.secondary}15`, color: COLORS.secondary }}>
+            <Calendar className="w-5 h-5 mr-2" />
+            Disponible muy pronto
+          </div>
+          <p className="mt-8 text-sm text-gray-500">
+            Mientras tanto, puedes contactarnos en{' '}
+            <a href="mailto:presidenta@emineras.cl" className="font-semibold hover:underline" style={{ color: COLORS.primary }}>
+              presidenta@emineras.cl
+            </a>
+          </p>
         </div>
       </Reveal>
     </div>
