@@ -321,7 +321,6 @@ const NewsModal = ({ news, onClose }) => {
 };
 
 
-
 // Componente Formulario Typeform
 const JoinForm = () => (
   <section id="unete" className="py-24 bg-slate-50 relative overflow-hidden">
@@ -343,7 +342,6 @@ const JoinForm = () => (
 );
 
 // --- Main App ---
-// Force deploy trigger
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -380,7 +378,8 @@ export default function App() {
     { id: 'directorio', title: 'Directorio', color: COLORS.accent1 },
     { id: 'objetivos', title: 'Objetivos', color: COLORS.accent2 },
     { id: 'programas', title: 'Programas', color: COLORS.primary },
-    { id: 'unete', title: 'Inscripción Evento', color: COLORS.secondary },
+    { id: 'unete', title: 'Únete a nosotras', color: COLORS.secondary },
+
     { id: 'noticias', title: 'Noticias', color: COLORS.accent2 },
     { id: 'contacto', title: 'Contacto', color: COLORS.accent1 },
   ];
@@ -664,6 +663,8 @@ export default function App() {
       </section>
 
       <JoinForm />
+
+
 
       <section id="noticias" className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
