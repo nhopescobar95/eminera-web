@@ -429,6 +429,7 @@ const JoinForm = () => (
 );
 
 // --- Main App ---
+// Force deploy trigger
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
