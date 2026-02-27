@@ -686,7 +686,7 @@ export default function App() {
           <Reveal variant="fade-up">
             <div className="w-full h-[700px] md:h-[900px] bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
               <iframe
-                src="https://forms.cloud.microsoft/e/UnmXf3wKtX"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSex8w8kjxMN9RV6Xk6tkaDgatpwlmawdh3MznAo2AHGrb930A/viewform?embedded=true"
                 style={{ width: '100%', height: '100%', border: 'none' }}
                 title="Formulario de Inscripción al Evento E+Mineras"
                 allowFullScreen
