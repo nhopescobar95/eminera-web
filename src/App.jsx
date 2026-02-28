@@ -309,9 +309,13 @@ const NewsModal = ({ news, onClose }) => {
               href={news.instagramLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center px-6 py-3 text-sm font-bold rounded-full shadow-md transition duration-300 hover:scale-105 text-white bg-gradient-to-r from-purple-500 to-pink-500"
+              className={`flex items-center px-6 py-3 text-sm font-bold rounded-full shadow-md transition duration-300 hover:scale-105 text-white ${news.instagramLink.includes('instagram.com') ? 'bg-gradient-to-r from-purple-500 to-pink-500' : 'bg-gradient-to-r from-slate-700 to-slate-900'}`}
             >
-              <Instagram className="w-5 h-5 mr-2" /> Ver en Instagram
+              {news.instagramLink.includes('instagram.com') ? (
+                <><Instagram className="w-5 h-5 mr-2" /> Ver en Instagram</>
+              ) : (
+                <><Globe className="w-5 h-5 mr-2" /> Ver fuente</>
+              )}
             </a>
           </div>
         </div>
@@ -416,12 +420,22 @@ export default function App() {
 
   const newsItems = [
     {
+      id: 4,
+      category: 'Presencia Internacional',
+      title: 'E+Minera presente en PDAC 2026 en Toronto',
+      date: '25 Feb 2026',
+      summary: 'El Gobierno presentó la delegación de más de 300 personas que representará a Chile en PDAC 2026, la convención minera más grande del mundo. E+Minera participa activamente.',
+      fullText: 'El Gobierno presentó oficialmente la delegación que representará a Chile en PDAC 2026 (Prospectors & Developers Association of Canada), considerada la convención minera más grande del mundo y que se desarrollará desde el primer domingo de marzo en Toronto, Canadá. El anuncio se realizó desde el Palacio de La Moneda y fue encabezado por la ministra de Minería, Aurora Williams.\n\nSegún lo informado, la delegación —compuesta por más de 300 personas— se configura como una articulación público-privada que reúne a autoridades, servicios públicos, empresas productoras y exploradoras, proveedores y organizaciones vinculadas al ecosistema minero, con el objetivo de proyectar a Chile como una industria sólida y confiable a nivel internacional.\n\nLa participación chilena en PDAC 2026 contempla una agenda orientada a la promoción de inversión, la atracción de capital para exploración y la generación de conexiones estratégicas para impulsar proyectos y alianzas. En este marco, InvestChile presentará un catastro de potenciales proyectos de exploración que supera los 40, mientras que ProChile participará con más de 12 proveedores para fortalecer la vinculación internacional del sector.\n\nE+Minera también forma parte de esta presencia país en Toronto, participando activamente en instancias de networking, coordinación y relacionamiento durante la semana. En esta edición, E+Minera está representada en terreno por equipos enfocados en asesoramiento en temas gubernamentales, relaciones públicas, relaciones laborales, relacionamiento comunitario y comunicaciones, contribuyendo a articular vínculos estratégicos y visibilizar el aporte del ecosistema en minería y energía.\n\nLa ministra Williams destacó además que se estableció una secretaría técnica para coordinar a quienes asistan, incluyendo acceso al stand de Chile y espacios de reuniones, con el objetivo de optimizar la participación nacional durante el evento.\n\nPDAC es uno de los encuentros internacionales más relevantes para la industria minera global y una plataforma clave para posicionar capacidades, generar oportunidades y fortalecer vínculos estratégicos, especialmente en un escenario marcado por la transición energética, la demanda por minerales críticos y el aumento de estándares de sostenibilidad.\n\nFuente: Radio Universidad de Chile.',
+      instagramLink: 'https://radio.uchile.cl/2026/02/25/mas-de-300-personas-gobierno-presenta-delegacion-para-asistir-a-la-convencion-minera-mas-grande-del-mundo/',
+      imagePlaceholder: 'https://radio.uchile.cl/wp-content/uploads/2026/02/mineria.jpg'
+    },
+    {
       id: 1,
       category: 'Internacionalización',
       title: '¿Cómo hacer negocios en Australia?',
       date: '21 Nov 2025',
       summary: 'Una instancia de networking clave para abrir la mente sobre las oportunidades comerciales entre Chile y Australia.',
-      fullText: '¡Estamos muy felices y agradecidas! 🙌\n\nGracias @prochileantofagasta por la invitación al evento “¿Cómo hacer negocios en Australia?”. Una instancia de networking que nos ayuda a abrir la mente sobre las oportunidades comerciales que existen entre Chile y Australia 🇨🇱🇦🇺.\n\nConversamos con el agregado comercial de ProChile Australia y aprendimos sobre los tratados que facilitan el comercio entre ambos países. Este tipo de espacios son clave para seguir creciendo y expandiendo horizontes 🌏✨.\n\nLa minería no tiene fronteras, y nosotras tampoco 💎.',
+      fullText: '¡Estamos muy felices y agradecidas! 🙌\n\nGracias @prochileantofagasta por la invitación al evento "¿Cómo hacer negocios en Australia?". Una instancia de networking que nos ayuda a abrir la mente sobre las oportunidades comerciales que existen entre Chile y Australia 🇨🇱🇦🇺.\n\nConversamos con el agregado comercial de ProChile Australia y aprendimos sobre los tratados que facilitan el comercio entre ambos países. Este tipo de espacios son clave para seguir creciendo y expandiendo horizontes 🌏✨.\n\nLa minería no tiene fronteras, y nosotras tampoco 💎.',
       instagramLink: 'https://www.instagram.com/p/DRUOn3gDSYH/?img_index=1',
       imagePlaceholder: 'https://i.ibb.co/yn7tqVvG/Imagen-de-Whats-App-2025-11-20-a-las-20-27-49-99b2d2f2.jpg'
     },
