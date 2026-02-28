@@ -403,7 +403,7 @@ export default function App() {
     { name: 'Martha Aguilera Alderete', role: 'Secretaria', company: 'Gerenta Innovación de Electroram', color: COLORS.primary, isSub: false, image: 'https://i.ibb.co/5g9YdMKn/images-q-tbn-ANd9-Gc-STeab27-W6x-Nz48-Rw-Iq-C-o-Y0c-RV6u1-F1-Mt-NAg-s.jpg' },
     { name: 'Cristina Araya Briones', role: 'Secretaria Subrogante', company: 'Gerenta General Araya Briones Ltda', color: COLORS.primary, isSub: true, image: 'https://i.ibb.co/jk4LJF1s/cristina-araya-briones-pdta-cchc-calama.jpg' },
     { name: 'Georgina Kong Medero-Laferte', role: 'Tesorera', company: 'Gerenta General Servicios Generales Kong Ltda', color: COLORS.accent2, isSub: false, image: 'https://i.ibb.co/7JkxDsHz/Captura-de-pantalla-2025-12-01-193535.png' },
-    { name: 'Maria Alejandra Jimenez Uribe', role: 'Tesorera Subrogante', company: 'Gerenta General Novamine Ltda', color: COLORS.accent2, isSub: true, image: 'https://i.ibb.co/j9NpM466/images-q-tbn-ANd9-Gc-RCD3v-Ekbk-Dldbb-Xfmf47-Us-WMhd-L2m-XV4cog-s.jpg' },
+    { name: 'Maria Alejandra Giménez Uribe', role: 'Tesorera Subrogante', company: 'Gerenta General Novamine Ltda', color: COLORS.accent2, isSub: true, image: 'https://i.ibb.co/j9NpM466/images-q-tbn-ANd9-Gc-RCD3v-Ekbk-Dldbb-Xfmf47-Us-WMhd-L2m-XV4cog-s.jpg' },
     { name: 'Paola Quezada Quiñones', role: 'Comunicaciones', company: 'Gerenta General Agencia Redes', color: COLORS.secondary, isSub: false, image: 'https://i.ibb.co/sJQqH1wd/Paola.png' },
   ];
 
