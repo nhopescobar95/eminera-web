@@ -238,27 +238,42 @@ const SectionTitle = ({ children, color = COLORS.dark }) => (
 );
 
 // Componente Tarjeta del Directorio
-const BoardMemberCard = ({ name, role, company, isSub, delay, image }) => (
+const BoardMemberCard = ({ name, role, company, isSub, delay, image, color = COLORS.accent1 }) => (
   <Reveal delay={delay} variant="fade-up">
-    <div className={`relative p-6 rounded-2xl transition-all duration-500 border-t-4 group hover:-translate-y-1 hover:shadow-xl bg-white overflow-hidden ${isSub ? 'border-gray-300 shadow-md' : 'border-brand-purple shadow-xl'}`}>
-      <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 ${isSub ? 'bg-gray-800' : 'bg-brand-purple'}`}></div>
+    <div
+      className={`relative p-6 rounded-2xl transition-all duration-500 border-t-4 group hover:-translate-y-1 hover:shadow-xl bg-white overflow-hidden ${isSub ? 'border-gray-300 shadow-md' : 'shadow-xl'}`}
+      style={{ borderTopColor: isSub ? '#d1d5db' : color }}
+    >
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+        style={{ backgroundColor: color }}
+      ></div>
 
       <div className="relative z-10 flex flex-col items-center text-center">
         {image ? (
-          <div className="mb-4 overflow-hidden w-24 h-24 rounded-full border-4 border-white shadow-lg group-hover:border-brand-purple transition-colors duration-300">
+          <div
+            className="mb-4 overflow-hidden w-24 h-24 rounded-full border-4 border-white shadow-lg transition-colors duration-300"
+            style={{ borderColor: 'white' }}
+          >
             <img src={image} alt={name} className="w-full h-full object-cover object-center transform hover:scale-110 transition-transform duration-500" />
           </div>
         ) : (
-          <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-4 text-white font-bold text-2xl shadow-lg ${isSub ? 'bg-gradient-to-br from-gray-400 to-gray-600' : 'bg-gradient-to-br from-brand-purple to-purple-600'}`}>
+          <div
+            className="w-20 h-20 rounded-full flex items-center justify-center mb-4 text-white font-bold text-2xl shadow-lg"
+            style={{ backgroundImage: `linear-gradient(to bottom right, ${color}, #6b21a8)` }}
+          >
             {name.charAt(0)}
           </div>
         )}
 
-        <h3 className="font-bold text-lg text-slate-900 group-hover:text-brand-purple transition-colors duration-300 mb-1">{name}</h3>
-        <p className={`font-bold text-xs uppercase tracking-widest mb-3 ${isSub ? 'text-gray-500' : 'text-brand-purple'}`}>{role}</p>
+        <h3 className="font-bold text-lg text-slate-900 transition-colors duration-300 mb-1 group-hover:text-opacity-80" style={{ color: COLORS.dark }}>{name}</h3>
+        <p className="font-bold text-xs uppercase tracking-widest mb-3" style={{ color: isSub ? '#6b7280' : color }}>{role}</p>
 
-        <div className="flex items-start text-left text-gray-600 text-sm bg-gray-50 p-3 rounded-xl border border-gray-100 transition-colors w-full group-hover:border-brand-purple/20">
-          <Briefcase size={16} className="mr-2 mt-0.5 flex-shrink-0 text-brand-orange" />
+        <div
+          className="flex items-start text-left text-gray-600 text-sm bg-gray-50 p-3 rounded-xl border border-gray-100 transition-colors w-full group-hover:border-opacity-20"
+          style={{ borderColor: isSub ? '#f3f4f6' : `${color}33` }}
+        >
+          <Briefcase size={16} className="mr-2 mt-0.5 flex-shrink-0" style={{ color: COLORS.secondary }} />
           <span className="leading-snug text-xs">{company}</span>
         </div>
       </div>
@@ -405,9 +420,9 @@ export default function App() {
     { name: 'Pamela Garrido Cisternas', role: 'Presidenta', company: 'Gerenta General EMESER Ltda', color: COLORS.accent1, isSub: false, image: 'https://i.ibb.co/bjzNBYXz/Whats-App-Image-2023-03-08-at-09-45-51.jpg' },
     { name: 'Rosa Ester Salazar Duarte', role: 'Vicepresidenta', company: 'Gerenta General Grupo ROES', color: COLORS.secondary, isSub: false, image: 'https://i.ibb.co/rfvfdmpV/Dise-o-sin-t-tulo.jpg' },
     { name: 'Martha Aguilera Alderete', role: 'Secretaria', company: 'Gerenta Innovación de Electroram', color: COLORS.primary, isSub: false, image: 'https://i.ibb.co/5g9YdMKn/images-q-tbn-ANd9-Gc-STeab27-W6x-Nz48-Rw-Iq-C-o-Y0c-RV6u1-F1-Mt-NAg-s.jpg' },
-    { name: 'Cristina Araya Briones', role: 'Secretaria Subrogante', company: 'Gerenta General Araya Briones Ltda', color: COLORS.primary, isSub: true, image: 'https://i.ibb.co/jk4LJF1s/cristina-araya-briones-pdta-cchc-calama.jpg' },
+    { name: 'Cristina Araya Briones', role: 'Secretaria Subrogante', company: 'Gerenta General Araya Briones Ltda', color: COLORS.accent2, isSub: true, image: 'https://i.ibb.co/jk4LJF1s/cristina-araya-briones-pdta-cchc-calama.jpg' },
     { name: 'Georgina Kong Medero-Laferte', role: 'Tesorera', company: 'Gerenta General Servicios Generales Kong Ltda', color: COLORS.accent2, isSub: false, image: 'https://i.ibb.co/7JkxDsHz/Captura-de-pantalla-2025-12-01-193535.png' },
-    { name: 'Maria Alejandra Giménez Uribe', role: 'Tesorera Subrogante', company: 'Gerenta General Novamine Ltda', color: COLORS.accent2, isSub: true, image: 'https://i.ibb.co/j9NpM466/images-q-tbn-ANd9-Gc-RCD3v-Ekbk-Dldbb-Xfmf47-Us-WMhd-L2m-XV4cog-s.jpg' },
+    { name: 'Maria Alejandra Giménez Uribe', role: 'Tesorera Subrogante', company: 'Gerenta General Novamine Ltda', color: COLORS.accent1, isSub: true, image: 'https://i.ibb.co/j9NpM466/images-q-tbn-ANd9-Gc-RCD3v-Ekbk-Dldbb-Xfmf47-Us-WMhd-L2m-XV4cog-s.jpg' },
     { name: 'Paola Quezada Quiñones', role: 'Directora', company: 'Gerenta General Agencia Redes', color: COLORS.secondary, isSub: false, image: 'https://i.ibb.co/sJQqH1wd/Paola.png' },
   ];
 
