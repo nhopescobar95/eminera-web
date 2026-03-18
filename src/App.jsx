@@ -542,11 +542,18 @@ export default function App() {
             <div className="inline-block px-4 py-1 mb-6 border rounded-full bg-white/50 backdrop-blur-sm border-slate-200 shadow-sm">
               <span className="text-xs font-bold tracking-widest uppercase" style={{ color: COLORS.secondary }}>Asociación Gremial Antofagasta</span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-slate-900 leading-tight tracking-tight">
-              Impulsando la <br />
-              <span className="text-brand-primary" style={{ color: COLORS.primary }}>Equidad</span> en <br /> Minería y Energía
-            </h1>
-            <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-light">Conectamos el talento y liderazgo femenino con las oportunidades de la industria para transformar el futuro desde el norte de Chile.</p>
+            <div className="w-full max-w-5xl mx-auto mb-8 rounded-[2.5rem] overflow-hidden shadow-2xl relative group">
+              <div className="absolute inset-0 bg-brand-primary opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none z-10"></div>
+              <video 
+                src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773876599/Banner02_dyoslm.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-auto object-cover transform scale-100 group-hover:scale-[1.02] transition-transform duration-1000"
+              />
+            </div>
+            <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-light leading-relaxed">Conectamos el talento y liderazgo femenino con las oportunidades de la industria para transformar el futuro desde el norte de Chile.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <a href="#unete" className="bg-slate-900/80 backdrop-blur-md border border-white/20 text-white font-bold py-4 px-10 rounded-full transition-all shadow-xl flex items-center justify-center group overflow-hidden relative hover:shadow-2xl hover:-translate-y-1">
                 <span className="relative z-10 flex items-center">Únete a nosotras <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
