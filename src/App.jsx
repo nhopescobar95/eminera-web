@@ -543,14 +543,13 @@ export default function App() {
               <span className="text-xs font-bold tracking-widest uppercase" style={{ color: COLORS.secondary }}>Asociación Gremial Antofagasta</span>
             </div>
             <div className="w-full max-w-5xl mx-auto mb-8 rounded-[2.5rem] overflow-hidden shadow-2xl relative group">
-              <div className="absolute inset-0 bg-brand-primary opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none z-10"></div>
               <video 
                 src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.mp4" 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                className="w-full h-auto object-cover transform scale-100 group-hover:scale-[1.02] transition-transform duration-1000"
+                className="w-full h-auto object-cover"
               />
             </div>
             <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-light leading-relaxed">Conectamos el talento y liderazgo femenino con las oportunidades de la industria para transformar el futuro desde el norte de Chile.</p>
