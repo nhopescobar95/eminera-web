@@ -533,30 +533,29 @@ export default function App() {
         )}
       </nav>
 
-      <section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
-        <div className="absolute inset-0 flex items-center justify-center z-0 overflow-hidden pointer-events-none">
-          <img src="https://i.ibb.co/SgBvQt4/logo-jpg.jpg" alt="Background Logo" className="w-[800px] h-[800px] object-contain opacity-25 animate-spin-slower" />
-        </div>
+      <section id="inicio" className="relative min-h-[80vh] flex items-center pt-24 pb-12 overflow-hidden bg-white">
         <div className="container mx-auto px-4 relative z-10 text-center">
           <Reveal delay={200}>
-            <div className="inline-block px-4 py-1 mb-6 border rounded-full bg-white/50 backdrop-blur-sm border-slate-200 shadow-sm">
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: COLORS.secondary }}>Asociación Gremial Antofagasta</span>
-            </div>
-            <div className="w-full max-w-5xl mx-auto mb-8 rounded-[2.5rem] overflow-hidden shadow-2xl relative group">
-              <video 
-                src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.mp4" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-light leading-relaxed">Conectamos el talento y liderazgo femenino con las oportunidades de la industria para transformar el futuro desde el norte de Chile.</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <a href="#unete" className="bg-slate-900/80 backdrop-blur-md border border-white/20 text-white font-bold py-4 px-10 rounded-full transition-all shadow-xl flex items-center justify-center group overflow-hidden relative hover:shadow-2xl hover:-translate-y-1">
-                <span className="relative z-10 flex items-center">Únete a nosotras <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" /></span>
-                <div className="absolute inset-0 bg-gradient-to-r from-slate-900 to-slate-800 group-hover:from-brand-purple group-hover:to-brand-primary transition-colors duration-500 opacity-0 group-hover:opacity-100 z-0"></div>
+            <div className="w-full max-w-7xl mx-auto mb-8 rounded-[3rem] overflow-hidden shadow-2xl relative group">
+              <a href="#inscripcion-evento" onClick={(e) => { e.preventDefault(); scrollToSection('inscripcion-evento'); }} className="block relative cursor-pointer">
+                <video 
+                  src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full h-auto object-cover"
+                />
+                {/* Overlay link button - simple and elegant */}
+                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                
+                {/* Visible "Inscríbete Aquí" call to action button overlay */}
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 transition-transform duration-500 group-hover:scale-110">
+                  <div className="bg-brand-primary text-white font-black py-4 px-12 rounded-full shadow-2xl flex items-center justify-center space-x-3 text-xl uppercase tracking-widest" style={{ backgroundColor: COLORS.primary }}>
+                    <span>Inscríbete Aquí</span>
+                    <ChevronRight className="w-6 h-6 animate-pulse" />
+                  </div>
+                </div>
               </a>
             </div>
           </Reveal>
