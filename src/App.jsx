@@ -546,16 +546,8 @@ export default function App() {
                   playsInline
                   className="w-full h-auto object-cover"
                 />
-                {/* Overlay link button - simple and elegant */}
+                {/* Subtle hover feedback */}
                 <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                
-                {/* Visible "Inscríbete Aquí" call to action button overlay */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 transition-transform duration-500 group-hover:scale-110">
-                  <div className="bg-brand-primary text-white font-black py-4 px-12 rounded-full shadow-2xl flex items-center justify-center space-x-3 text-xl uppercase tracking-widest" style={{ backgroundColor: COLORS.primary }}>
-                    <span>Inscríbete Aquí</span>
-                    <ChevronRight className="w-6 h-6 animate-pulse" />
-                  </div>
-                </div>
               </a>
             </div>
           </Reveal>
