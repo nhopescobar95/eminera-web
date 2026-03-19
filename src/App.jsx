@@ -380,6 +380,21 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [selectedNews, setSelectedNews] = useState(null);
   const parallaxOffset = useParallax(0.3);
+  const videoRef = useRef(null);
+
+  // Intentar forzar la reproducción del video al cargar (útil para móviles)
+  useEffect(() => {
+    if (videoRef.current) {
+      const playVideo = async () => {
+        try {
+          await videoRef.current.play();
+        } catch (err) {
+          console.log("Autoplay prevented:", err);
+        }
+      };
+      playVideo();
+    }
+  }, []);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -539,6 +554,7 @@ export default function App() {
             <div className="w-full max-w-7xl mx-auto mb-8 rounded-[3rem] overflow-hidden shadow-2xl relative group">
               <a href="#inscripcion-evento" onClick={(e) => { e.preventDefault(); scrollToSection('inscripcion-evento'); }} className="block relative cursor-pointer">
                 <video 
+                  ref={videoRef}
                   src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.mp4" 
                   autoPlay 
                   loop 
