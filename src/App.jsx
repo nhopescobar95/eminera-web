@@ -579,15 +579,6 @@ export default function App() {
                   onPause={() => setIsHeroVideoPlaying(false)}
                 />
                 
-                {/* Visual Play indicator when paused */}
-                {!isHeroVideoPlaying && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-all duration-300">
-                    <div className="w-24 h-24 rounded-full bg-brand-primary/90 text-white flex items-center justify-center shadow-2xl transform transition-transform duration-500 hover:scale-110" style={{ backgroundColor: COLORS.primary }}>
-                      <Play className="w-12 h-12 ml-1 fill-current" />
-                    </div>
-                  </div>
-                )}
-
                 {/* Subtle hover feedback when playing */}
                 {isHeroVideoPlaying && (
                   <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
