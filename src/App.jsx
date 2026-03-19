@@ -544,6 +544,7 @@ export default function App() {
                   loop 
                   muted 
                   playsInline
+                  preload="auto"
                   className="w-full h-auto object-cover"
                 />
                 {/* Subtle hover feedback */}
