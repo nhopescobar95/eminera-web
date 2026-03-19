@@ -411,7 +411,7 @@ export default function App() {
     { id: 'objetivos', title: 'Objetivos', color: COLORS.accent2 },
     { id: 'programas', title: 'Programas', color: COLORS.primary },
     { id: 'unete', title: 'Únete a nosotras', color: COLORS.secondary },
-    { id: 'inscripcion-evento', title: 'Caminata 2026', color: COLORS.primary },
+    { id: 'inscripcion-evento', title: 'Inscripción Evento', color: COLORS.primary },
     { id: 'noticias', title: 'Noticias', color: COLORS.accent2 },
     { id: 'contacto', title: 'Contacto', color: COLORS.accent1 },
   ];
@@ -545,7 +545,7 @@ export default function App() {
             <div className="w-full max-w-5xl mx-auto mb-8 rounded-[2.5rem] overflow-hidden shadow-2xl relative group">
               <div className="absolute inset-0 bg-brand-primary opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none z-10"></div>
               <video 
-                src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773876599/Banner02_dyoslm.mp4" 
+                src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.mp4" 
                 autoPlay 
                 loop 
                 muted 
@@ -718,29 +718,15 @@ export default function App() {
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange opacity-10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <SectionTitle>Caminata de Mentoreo 2026</SectionTitle>
+          <SectionTitle>Inscripción al Evento</SectionTitle>
           <Reveal variant="fade-up">
-            <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 p-12 text-center">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center bg-red-50 text-red-500">
-                <Users className="w-10 h-10" />
-              </div>
-              <h3 className="text-3xl font-bold text-slate-900 mb-4">
-                ¡Cupos Agotados!
-              </h3>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                Agradecemos el enorme interés en la <strong>Caminata de Mentoreo 2026</strong>. 
-                Informamos que hemos completado el cupo máximo de inscripciones y el proceso de postulación se encuentra cerrado.
-              </p>
-              <div className="inline-flex items-center px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider bg-red-100 text-red-600">
-                <X className="w-5 h-5 mr-2" />
-                Inscripciones Cerradas
-              </div>
-              <p className="mt-8 text-sm text-gray-500">
-                Si tienes consultas, puedes escribirnos a{' '}
-                <a href="mailto:contacto@emineras.cl" className="font-semibold hover:underline" style={{ color: COLORS.primary }}>
-                  contacto@emineras.cl
-                </a>
-              </p>
+            <div className="w-full h-[700px] md:h-[900px] bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+              <iframe
+                src="https://forms.office.com/pages/responsepage.aspx?id=aZGVD0y0okm0iHs9GwIhqWvrTlGXp2tMpAvDWgETJC1URVg1Vk42Wk00UVNOUEhZVzk0Wkk3NlJNVC4u&embedded=true"
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                title="Formulario de Inscripción al Evento"
+                allowFullScreen
+              ></iframe>
             </div>
           </Reveal>
         </div>
