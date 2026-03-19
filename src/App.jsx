@@ -25,7 +25,8 @@ import {
   Globe,
   TrendingUp,
   Award, // Corregido: Usando Award en lugar de Handshake para evitar error de compilación
-  MessageSquare
+  MessageSquare,
+  Play
 } from 'lucide-react';
 
 // --- Definición de Colores ---
@@ -379,6 +380,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
   const [selectedNews, setSelectedNews] = useState(null);
+  const [isHeroVideoPlaying, setIsHeroVideoPlaying] = useState(false);
   const parallaxOffset = useParallax(0.3);
   const videoRef = useRef(null);
 
@@ -552,7 +554,16 @@ export default function App() {
         <div className="container mx-auto px-4 relative z-10 text-center">
           <Reveal delay={0}>
             <div className="w-full max-w-7xl mx-auto mb-8 rounded-[3rem] overflow-hidden shadow-2xl relative group">
-              <a href="#inscripcion-evento" onClick={(e) => { e.preventDefault(); scrollToSection('inscripcion-evento'); }} className="block relative cursor-pointer">
+              <div 
+                onClick={() => {
+                  if (videoRef.current.paused) {
+                    videoRef.current.play();
+                  } else {
+                    scrollToSection('inscripcion-evento');
+                  }
+                }} 
+                className="block relative cursor-pointer"
+              >
                 <video 
                   ref={videoRef}
                   src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.mp4" 
@@ -564,10 +575,24 @@ export default function App() {
                   webkit-playsinline="true"
                   preload="auto"
                   className="w-full h-auto object-cover"
+                  onPlay={() => setIsHeroVideoPlaying(true)}
+                  onPause={() => setIsHeroVideoPlaying(false)}
                 />
-                {/* Subtle hover feedback */}
-                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              </a>
+                
+                {/* Visual Play indicator when paused */}
+                {!isHeroVideoPlaying && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-all duration-300">
+                    <div className="w-24 h-24 rounded-full bg-brand-primary/90 text-white flex items-center justify-center shadow-2xl transform transition-transform duration-500 hover:scale-110" style={{ backgroundColor: COLORS.primary }}>
+                      <Play className="w-12 h-12 ml-1 fill-current" />
+                    </div>
+                  </div>
+                )}
+
+                {/* Subtle hover feedback when playing */}
+                {isHeroVideoPlaying && (
+                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                )}
+              </div>
             </div>
           </Reveal>
         </div>
