@@ -550,16 +550,18 @@ export default function App() {
 
       <section id="inicio" className="relative min-h-[80vh] flex items-center pt-24 pb-12 overflow-hidden bg-white">
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <Reveal delay={200}>
+          <Reveal delay={0}>
             <div className="w-full max-w-7xl mx-auto mb-8 rounded-[3rem] overflow-hidden shadow-2xl relative group">
               <a href="#inscripcion-evento" onClick={(e) => { e.preventDefault(); scrollToSection('inscripcion-evento'); }} className="block relative cursor-pointer">
                 <video 
                   ref={videoRef}
                   src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.mp4" 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline
+                  poster="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.jpg"
+                  autoPlay={true}
+                  loop={true}
+                  muted={true}
+                  playsInline={true}
+                  webkit-playsinline="true"
                   preload="auto"
                   className="w-full h-auto object-cover"
                 />
