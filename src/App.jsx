@@ -566,8 +566,8 @@ export default function App() {
               >
                 <video 
                   ref={videoRef}
-                  src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.mp4" 
-                  poster="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1773951819/socios_estrat%C3%A9gicos_ufeaua.jpg"
+                  src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1774394087/Hub_uwnr7j.mp4" 
+                  poster="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1774394087/Hub_uwnr7j.jpg"
                   autoPlay={true}
                   loop={true}
                   muted={true}
