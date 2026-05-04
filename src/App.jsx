@@ -341,6 +341,337 @@ const NewsModal = ({ news, onClose }) => {
 };
 
 
+// --- Datos de Socias (Dial) ---
+const SOCIAS_CATEGORIES = [
+  {
+    id: "industrial", name: "Servicios Industriales", subtitle: "Industrial · Innovación · Tech",
+    color: "#F06432", colorSoft: "rgba(240,100,50,0.18)",
+    members: [
+      { name: "Pamela Garrido", company: "EMESER", area: "Industrial" },
+      { name: "Cristina Araya", company: "Araya Briones", area: "Industrial" },
+      { name: "Georgina Kong", company: "Servicios Kong", area: "Industrial" },
+      { name: "Martha Aguilera", company: "Electroram", area: "Industrial" },
+      { name: "Alejandra Gimenez", company: "Novamine", area: "Industrial" },
+      { name: "Valeria Castillo", company: "Gruval", area: "Industrial" },
+      { name: "Francisca Tello", company: "Tegmin", area: "Industrial" },
+      { name: "Paulina González", company: "Robotika", area: "Innovación · Tech" },
+      { name: "Yocelin Quiroz", company: "C&N Obras Civiles", area: "Industrial" },
+      { name: "Giovanna Soriano", company: "Servicios LYG", area: "Industrial" },
+      { name: "Marjorie Trivick", company: "Trivick Group / Future of Data", area: "Innovación · Tech" },
+      { name: "Virla Ibáñez", company: "Provee Spa", area: "Industrial" },
+      { name: "Yasna Sepúlveda", company: "Alpha Support", area: "Industrial" },
+      { name: "Katharina Haltenhoff", company: "Mueblería La Americana", area: "Industrial" },
+      { name: "Teresa Gajardo", company: "TMETAL", area: "Industrial" },
+      { name: "Karina Palma", company: "Manlim Spa", area: "Innovación · Tech" }
+    ]
+  },
+  {
+    id: "asesorias", name: "Asesorías", subtitle: "Consultoría · Estrategia · Comunidades",
+    color: "#BE78C8", colorSoft: "rgba(190,120,200,0.18)",
+    members: [
+      { name: "Paola Quezada", company: "Agencia Redes", area: "Asesorías" },
+      { name: "Monica Herrera", company: "Startmomentum Consulting", area: "Asesorías" },
+      { name: "Tatiana Martinez", company: "MIJ Soluciones Contables", area: "Asesorías" },
+      { name: "Andrea Vivanco", company: "Training Centre", area: "Asesorías" },
+      { name: "Tatiana Sanhueza", company: "TAT Engineer IA", area: "Asesorías" },
+      { name: "Marcela Maldonado", company: "Ulter SpA", area: "Asesorías" },
+      { name: "Liseth Otero", company: "Grupo Lidero con Valentía", area: "Asesorías" },
+      { name: "Paola Mardones", company: "Asesoramiento PMA", area: "Asesorías" },
+      { name: "Ruth Rodríguez", company: "SMI Chile", area: "Asesorías" },
+      { name: "Karla Sepúlveda", company: "Consultora", area: "Asesorías" },
+      { name: "Mary Valdes", company: "Consultora", area: "Asesorías" }
+    ]
+  },
+  {
+    id: "salud", name: "Salud", subtitle: "Bienestar · Clínica",
+    color: "#F0B428", colorSoft: "rgba(240,180,40,0.18)",
+    members: [
+      { name: "Lidia Rubio", company: "Clínica Alura", area: "Salud" },
+      { name: "Odette Quijada", company: "Aurora Med", area: "Salud" }
+    ]
+  },
+  {
+    id: "circular", name: "Economía Circular", subtitle: "Sostenibilidad · Reciclaje",
+    color: "#14BEB4", colorSoft: "rgba(20,190,180,0.18)",
+    members: [
+      { name: "Rosa Ester Salazar", company: "GRUPO ROES / ECOCIR", area: "Economía Circular" }
+    ]
+  }
+];
+
+// --- Dial Geometry Helpers ---
+const DIAL_CONFIG = { rOuter: 130, rInner: 70, gap: 3 };
+const SEG_ORDER = ["salud", "circular", "asesorias", "industrial"];
+const SEG_ANGLES = {
+  salud: { start: 270, end: 360 },
+  circular: { start: 0, end: 90 },
+  asesorias: { start: 90, end: 180 },
+  industrial: { start: 180, end: 270 }
+};
+const byId = Object.fromEntries(SOCIAS_CATEGORIES.map(c => [c.id, c]));
+const totalSocias = SOCIAS_CATEGORIES.reduce((s, c) => s + c.members.length, 0);
+
+function polarCoord(angleDegFromTop, r) {
+  const rad = (angleDegFromTop - 90) * Math.PI / 180;
+  return { x: Math.cos(rad) * r, y: Math.sin(rad) * r };
+}
+
+function arcPath(startDeg, endDeg, rOuter, rInner) {
+  const gap = DIAL_CONFIG.gap;
+  const s = startDeg + gap / 2;
+  const e = endDeg - gap / 2;
+  const large = (e - s) > 180 ? 1 : 0;
+  const p1 = polarCoord(s, rOuter);
+  const p2 = polarCoord(e, rOuter);
+  const p3 = polarCoord(e, rInner);
+  const p4 = polarCoord(s, rInner);
+  return [
+    `M ${p1.x.toFixed(2)} ${p1.y.toFixed(2)}`,
+    `A ${rOuter} ${rOuter} 0 ${large} 1 ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`,
+    `L ${p3.x.toFixed(2)} ${p3.y.toFixed(2)}`,
+    `A ${rInner} ${rInner} 0 ${large} 0 ${p4.x.toFixed(2)} ${p4.y.toFixed(2)}`,
+    "Z"
+  ].join(" ");
+}
+
+// --- Socias Dial Component ---
+const SociasGallery = () => {
+  const [activeId, setActiveId] = useState(null);
+  const [locked, setLocked] = useState(false);
+  const sectionRef = useRef(null);
+
+  const activeCat = activeId ? byId[activeId] : null;
+
+  const activate = (id) => {
+    if (locked && activeId !== id) return;
+    setActiveId(id);
+  };
+  const deactivate = () => {
+    if (!locked) setActiveId(null);
+  };
+  const toggleLock = (id) => {
+    if (locked && activeId === id) {
+      setLocked(false);
+      setActiveId(null);
+    } else {
+      setLocked(true);
+      setActiveId(id);
+    }
+  };
+
+  // Click outside to deactivate
+  useEffect(() => {
+    const handler = (e) => {
+      if (!locked) return;
+      if (sectionRef.current && !e.target.closest('.socias-dial-area')) {
+        setLocked(false);
+        setActiveId(null);
+      }
+    };
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
+  }, [locked]);
+
+  const getInitials = (name) => name.split(/\s+/).slice(0, 2).map(s => s[0]).join("").toUpperCase();
+
+  return (
+    <section id="socias" ref={sectionRef} className="py-24 relative overflow-hidden" style={{ background: '#f8fafc' }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+        .socias-dial-section { font-family: 'Montserrat', system-ui, sans-serif; }
+        .socias-dial-section .segment-arc { transition: fill 0.3s ease, filter 0.4s ease; stroke: rgba(0,0,0,0.12); stroke-width: 1.5; }
+        .socias-dial-section .segment-group { cursor: pointer; transition: transform 0.45s cubic-bezier(0.2,0.8,0.2,1.05), opacity 0.3s ease; transform-origin: 0 0; transform-box: fill-box; }
+        .socias-dial-section .segment-group:hover .segment-arc { filter: drop-shadow(0 0 14px currentColor); }
+        .socias-dial-section .segment-group.is-active { transform: scale(1.06); }
+        .socias-dial-section .segment-group.is-active .segment-arc { filter: drop-shadow(0 0 18px currentColor) drop-shadow(0 0 6px currentColor); }
+        .socias-dial-section .segment-group.is-dimmed { opacity: 0.3; filter: saturate(0.6); }
+        .socias-dial-section .segment-label { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; fill: rgba(30,41,59,0.85); pointer-events: none; }
+        .socias-dial-section .member-item { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; border: 1px solid #e2e8f0; background: #ffffff; transition: all 0.3s ease; }
+        .socias-dial-section .member-item:hover { border-color: var(--accent, #cbd5e1); background: #f8fafc; transform: translateX(2px); }
+        .socias-dial-section .member-avatar { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.5px; flex-shrink: 0; }
+        .socias-dial-section .member-name { font-weight: 600; font-size: 0.9rem; color: #1e293b; letter-spacing: -0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .socias-dial-section .member-company { font-size: 0.78rem; color: #64748b; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .socias-dial-section .member-area-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; border: 1px solid currentColor; flex-shrink: 0; white-space: nowrap; }
+        .socias-dial-section .legend-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; border: 1px solid #e2e8f0; font-size: 0.74rem; color: #64748b; background: #ffffff; cursor: pointer; transition: all 0.25s ease; font-weight: 500; }
+        .socias-dial-section .legend-pill:hover { border-color: #cbd5e1; color: #1e293b; }
+        .socias-dial-section .legend-pill.is-active { border-color: currentColor; color: #1e293b; }
+        .socias-dial-section .panel-card { position: relative; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 22px; padding: 28px; min-height: 480px; display: flex; flex-direction: column; box-shadow: 0 4px 24px -6px rgba(0,0,0,0.08); overflow: hidden; transition: border-color 0.4s ease, box-shadow 0.4s ease; }
+        .socias-dial-section .panel-card.is-active { border-color: var(--accent); box-shadow: 0 8px 40px -10px rgba(0,0,0,0.12); }
+        .socias-dial-section .panel-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, var(--accent, transparent), transparent 60%); opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
+        .socias-dial-section .panel-card.is-active::before { opacity: 0.06; }
+        .socias-dial-section .panel-body { flex: 1; overflow-y: auto; padding-right: 6px; margin-right: -6px; }
+        .socias-dial-section .panel-body::-webkit-scrollbar { width: 4px; }
+        .socias-dial-section .panel-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        @keyframes sociasFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .socias-dial-section .fade-in { animation: sociasFadeIn 0.5s cubic-bezier(0.2,0.7,0,1) both; }
+        @media (max-width: 1100px) {
+          .panel-card { min-height: auto !important; }
+        }
+        @media (max-width: 700px) {
+          .socias-dial-svg-wrap { width: min(340px, 88vw) !important; }
+          .socias-dial-section .legend-pill { font-size: 0.7rem; padding: 6px 10px; }
+          .socias-dial-section .panel-card { padding: 20px !important; }
+          .socias-dial-section .member-item { padding: 12px; gap: 10px; }
+          .socias-dial-section .member-area-tag { display: none; }
+        }
+      `}</style>
+
+      <div className="socias-dial-section socias-dial-area container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <Reveal variant="fade-up">
+          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 14px', borderRadius: '999px', border: '1px solid #e2e8f0', fontSize: '0.78rem', fontWeight: 500, color: '#64748b', background: '#ffffff', marginBottom: '0.75rem' }}>
+              <span style={{ width: '6px', height: '6px', background: '#4ade80', borderRadius: '50%', boxShadow: '0 0 10px #4ade80' }} />
+              {totalSocias} socias · 4 áreas
+            </span>
+          </div>
+        </Reveal>
+        <Reveal variant="fade-up" delay={50}>
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <p style={{ fontSize: '0.72rem', letterSpacing: '3px', fontWeight: 600, color: COLORS.primary, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Mujeres que mueven la minería</p>
+            <h2 style={{ fontWeight: 300, fontSize: 'clamp(2.2rem, 4vw, 3.4rem)', lineHeight: 1.05, letterSpacing: '-2px', color: '#1e293b', marginBottom: '0.75rem' }}>
+              Cuatro áreas.{' '}
+              <span style={{ fontWeight: 800, background: 'linear-gradient(135deg, #F06432, #BE78C8 50%, #14BEB4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Una red.</span>
+            </h2>
+            <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: 1.6, maxWidth: '400px', margin: '0 auto' }}>
+              Explora la red haciendo <strong style={{ color: '#1e293b', fontWeight: 600 }}>hover</strong> o <strong style={{ color: '#1e293b', fontWeight: 600 }}>tap</strong> sobre cada segmento del círculo.
+            </p>
+          </div>
+        </Reveal>
+
+        {/* Main Stacked Layout */}
+        <div className="socias-stage" style={{ display: 'flex', flexDirection: 'column', gap: '32px', maxWidth: '800px', margin: '0 auto', alignItems: 'center' }}>
+          
+          {/* TOP: Dial */}
+          <div className="socias-dial-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '28px', width: '100%' }}>
+            <div className="socias-dial-svg-wrap" style={{ position: 'relative', width: 'min(440px, 80vw)', aspectRatio: '1', display: 'grid', placeItems: 'center' }}>
+              <svg viewBox="-160 -160 320 320" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+                {/* Decorative rings */}
+                <circle r="148" fill="none" stroke="rgba(30,41,59,0.06)" strokeWidth="1" />
+                <circle r="138" fill="none" stroke="rgba(30,41,59,0.08)" strokeWidth="1" strokeDasharray="2 6" />
+                {/* Segments */}
+                {SEG_ORDER.map(id => {
+                  const cat = byId[id];
+                  const { start, end } = SEG_ANGLES[id];
+                  const mid = (start + end) / 2;
+                  const labelR = (DIAL_CONFIG.rOuter + DIAL_CONFIG.rInner) / 2;
+                  const lp = polarCoord(mid, labelR);
+                  const isActive = activeId === id;
+                  const isDimmed = activeId && activeId !== id;
+                  return (
+                    <g
+                      key={id}
+                      className={`segment-group ${isActive ? 'is-active' : ''} ${isDimmed ? 'is-dimmed' : ''}`}
+                      style={{ color: cat.color }}
+                      onMouseEnter={() => activate(id)}
+                      onMouseLeave={deactivate}
+                      onClick={() => toggleLock(id)}
+                    >
+                      <path className="segment-arc" d={arcPath(start, end, DIAL_CONFIG.rOuter, DIAL_CONFIG.rInner)} fill={cat.color} />
+                      <text className="segment-label" x={lp.x.toFixed(2)} y={lp.y.toFixed(2)} textAnchor="middle" dominantBaseline="middle">
+                        {cat.members.length}
+                      </text>
+                    </g>
+                  );
+                })}
+                {/* Inner core */}
+                <circle r="56" fill="rgba(248,250,252,0.95)" stroke="rgba(30,41,59,0.1)" strokeWidth="1" />
+              </svg>
+              {/* Core label */}
+              <div style={{ position: 'absolute', width: '35%', aspectRatio: '1', borderRadius: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', pointerEvents: 'none', padding: '10px' }}>
+                <div style={{ fontSize: activeCat ? '0.85rem' : '0.78rem', fontWeight: activeCat ? 700 : 500, color: activeCat ? '#1e293b' : '#64748b', lineHeight: 1.25, transition: 'all 0.3s ease' }}
+                  dangerouslySetInnerHTML={{ __html: activeCat ? activeCat.name : 'Selecciona<br/>un área' }}
+                />
+                {activeCat && (
+                  <div style={{ marginTop: '6px', fontSize: '0.68rem', color: '#94a3b8', letterSpacing: '1.5px', textTransform: 'uppercase', fontWeight: 500 }}>
+                    {activeCat.members.length} socias
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* BOTTOM: Legend and Panel */}
+          <div className="socias-info-col" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            
+            {/* Legend */}
+            <div className="socias-hero-col" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+              {SOCIAS_CATEGORIES.map(cat => (
+                <div
+                  key={cat.id}
+                  className={`legend-pill ${activeId === cat.id ? 'is-active' : ''}`}
+                  style={activeId === cat.id ? { borderColor: cat.color, color: cat.color } : {}}
+                  onMouseEnter={() => activate(cat.id)}
+                  onMouseLeave={deactivate}
+                  onClick={() => toggleLock(cat.id)}
+                >
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: cat.color, boxShadow: `0 0 8px ${cat.color}` }} />
+                  <span>{cat.name}</span>
+                  <span style={{ fontSize: '0.68rem', color: '#94a3b8', fontWeight: 600 }}>({cat.members.length})</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Panel */}
+            <div
+              className={`panel-card socias-dial-area ${activeCat ? 'is-active' : ''}`}
+              style={{ '--accent': activeCat ? activeCat.color : 'transparent', '--accent-soft': activeCat ? activeCat.colorSoft : 'transparent', width: '100%', minHeight: 'auto', maxHeight: '500px' }}
+            >
+              <div style={{ borderBottom: '1px solid #e2e8f0', paddingBottom: '18px', marginBottom: '18px' }}>
+                <div style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '8px',
+                  fontSize: '0.7rem', fontWeight: 600, letterSpacing: '2.5px', textTransform: 'uppercase',
+                  padding: '6px 12px', borderRadius: '999px', border: '1px solid currentColor',
+                  color: activeCat ? activeCat.color : '#94a3b8',
+                  background: activeCat ? activeCat.colorSoft : 'transparent',
+                  marginBottom: '14px', transition: 'all 0.4s ease'
+                }}>
+                  {activeCat ? `${String(activeCat.members.length).padStart(2, '0')} · ${activeCat.id.toUpperCase()}` : '—'}
+                </div>
+                <h3 style={{ fontSize: 'clamp(1.4rem, 2.4vw, 1.9rem)', fontWeight: 700, letterSpacing: '-0.8px', lineHeight: 1.1, color: '#1e293b' }}>
+                  {activeCat ? activeCat.name : 'Selecciona un área'}
+                </h3>
+                <p style={{ marginTop: '10px', fontSize: '0.85rem', color: '#64748b', lineHeight: 1.5 }}>
+                  {activeCat ? activeCat.subtitle : 'Pasa el cursor o toca un segmento de la rueda arriba para descubrir las socias de cada categoría.'}
+                </p>
+              </div>
+              <div className="panel-body" style={{ maxHeight: '300px' }}>
+                {activeCat ? (
+                  <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    {activeCat.members.map((m, i) => {
+                      const initials = m.name.split(/\s+/).slice(0, 2).map(s => s[0]).join("").toUpperCase();
+                      return (
+                        <div key={i} className="member-item" style={{ '--accent': activeCat.color }}>
+                          <div className="member-avatar" style={{ background: activeCat.colorSoft, color: activeCat.color, border: `1px solid ${activeCat.color}` }}>
+                            {initials}
+                          </div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', minWidth: 0 }}>
+                            <div className="member-name">{m.name}</div>
+                            <div className="member-company">{m.company || '—'}</div>
+                          </div>
+                          <div className="member-area-tag" style={{ color: activeCat.color }}>{m.area}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '14px', height: '100%', minHeight: '180px', color: '#94a3b8' }}>
+                    <svg viewBox="0 0 60 60" style={{ width: '56px', height: '56px', animation: 'spin-slow 22s linear infinite' }}>
+                      <circle cx="30" cy="30" r="20" fill="none" stroke="rgba(30,41,59,0.15)" strokeWidth="1.5" strokeDasharray="3 4" />
+                    </svg>
+                    <p style={{ fontSize: '0.8rem', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 500 }}>Esperando interacción…</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
 // Componente Aviso Próximamente
 const JoinForm = () => (
   <section id="unete" className="py-24 bg-slate-50 relative overflow-hidden">
@@ -380,23 +711,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
   const [selectedNews, setSelectedNews] = useState(null);
-  const [isHeroVideoPlaying, setIsHeroVideoPlaying] = useState(false);
   const parallaxOffset = useParallax(0.3);
-  const videoRef = useRef(null);
-
-  // Intentar forzar la reproducción del video al cargar (útil para móviles)
-  useEffect(() => {
-    if (videoRef.current) {
-      const playVideo = async () => {
-        try {
-          await videoRef.current.play();
-        } catch (err) {
-          console.log("Autoplay prevented:", err);
-        }
-      };
-      playVideo();
-    }
-  }, []);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -427,8 +742,8 @@ export default function App() {
     { id: 'directorio', title: 'Directorio', color: COLORS.accent1 },
     { id: 'objetivos', title: 'Objetivos', color: COLORS.accent2 },
     { id: 'programas', title: 'Programas', color: COLORS.primary },
+    { id: 'socias', title: 'Socias', color: '#4A7FA5' },
     { id: 'unete', title: 'Únete a nosotras', color: COLORS.secondary },
-    { id: 'inscripcion-evento', title: 'Inscripción Evento', color: COLORS.primary },
     { id: 'noticias', title: 'Noticias', color: COLORS.accent2 },
     { id: 'contacto', title: 'Contacto', color: COLORS.accent1 },
   ];
@@ -550,41 +865,24 @@ export default function App() {
         )}
       </nav>
 
-      <section id="inicio" className="relative min-h-[80vh] flex items-center pt-24 pb-12 overflow-hidden bg-white">
+      <section id="inicio" className="relative min-h-[80vh] flex items-center justify-center pt-24 pb-12 overflow-hidden bg-white">
+        {/* Logo de fondo girando suavemente */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+          <img 
+            src="/logo-eminera.png" 
+            alt="Logo fondo" 
+            className="w-[600px] h-[600px] object-contain animate-spin-slower" 
+          />
+        </div>
+        
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <Reveal delay={0}>
-            <div className="w-full max-w-7xl mx-auto mb-8 rounded-[3rem] overflow-hidden shadow-2xl relative group">
-              <div 
-                onClick={() => {
-                  if (videoRef.current.paused) {
-                    videoRef.current.play();
-                  } else {
-                    scrollToSection('inscripcion-evento');
-                  }
-                }} 
-                className="block relative cursor-pointer"
-              >
-                <video 
-                  ref={videoRef}
-                  src="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1774394087/Hub_uwnr7j.mp4" 
-                  poster="https://res.cloudinary.com/dkqtk6ipo/video/upload/v1774394087/Hub_uwnr7j.jpg"
-                  autoPlay={true}
-                  loop={true}
-                  muted={true}
-                  playsInline={true}
-                  webkit-playsinline="true"
-                  preload="auto"
-                  className="w-full h-auto object-cover"
-                  onPlay={() => setIsHeroVideoPlaying(true)}
-                  onPause={() => setIsHeroVideoPlaying(false)}
-                />
-                
-                {/* Subtle hover feedback when playing */}
-                {isHeroVideoPlaying && (
-                  <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                )}
-              </div>
-            </div>
+          <Reveal delay={0} variant="fade-up">
+            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">
+              Bienvenidas a <span style={{ color: COLORS.primary }}>e+minera</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Una red de mujeres líderes que impulsa el desarrollo, la conectividad y la excelencia en la industria minera y de servicios.
+            </p>
           </Reveal>
         </div>
       </section>
@@ -736,26 +1034,11 @@ export default function App() {
         </div>
       </section>
 
+      <SociasGallery />
+
       <JoinForm />
 
-      <section id="inscripcion-evento" className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-teal opacity-10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-orange opacity-10 rounded-full -ml-32 -mb-32 blur-3xl"></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <SectionTitle>Inscripción al Evento</SectionTitle>
-          <Reveal variant="fade-up">
-            <div className="w-full h-[700px] md:h-[900px] bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
-              <iframe
-                src="https://forms.office.com/pages/responsepage.aspx?id=aZGVD0y0okm0iHs9GwIhqWvrTlGXp2tMpAvDWgETJC1URVg1Vk42Wk00UVNOUEhZVzk0Wkk3NlJNVC4u&embedded=true"
-                style={{ width: '100%', height: '100%', border: 'none' }}
-                title="Formulario de Inscripción al Evento"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* Sección Inscripción eliminada */}
 
 
       <section id="noticias" className="py-24 bg-slate-50">

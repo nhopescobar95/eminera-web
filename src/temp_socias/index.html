@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>E+Minera · Red de Socias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <img src="logo_eminera.png" alt="E+Minera" class="brand-logo" />
+      <div class="brand-text">
+        <span class="brand-title">E+Minera</span>
+        <span class="brand-sub">Red de Socias</span>
+      </div>
+    </div>
+    <nav class="header-meta" aria-label="Resumen">
+      <span class="meta-pill"><span class="meta-dot"></span><span id="metaCount">—</span> socias</span>
+      <span class="meta-pill alt">4 áreas</span>
+    </nav>
+  </header>
+
+  <main class="stage">
+
+    <section class="hero">
+      <p class="eyebrow">Mujeres que mueven la minería</p>
+      <h1 class="hero-title">
+        Cuatro áreas.<br/>
+        <span class="hero-em">Una red.</span>
+      </h1>
+      <p class="hero-lead">Explora la red haciendo <strong>hover</strong> o <strong>tap</strong> sobre cada segmento del círculo.</p>
+    </section>
+
+    <section class="dial-wrap" aria-label="Selector de áreas">
+      <div class="dial" id="dial" role="tablist" aria-orientation="horizontal">
+        <svg viewBox="-160 -160 320 320" class="dial-svg" aria-hidden="true">
+          <defs>
+            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- Decorative outer ring -->
+          <circle r="148" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <circle r="138" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="2 6"/>
+
+          <!-- Segments injected by JS -->
+          <g id="segments"></g>
+
+          <!-- Inner core -->
+          <circle r="56" fill="rgba(10,12,18,0.85)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          <circle r="56" fill="url(#coreGrad)" opacity="0"/>
+        </svg>
+
+        <div class="dial-core" aria-live="polite">
+          <div class="core-label" id="coreLabel">Selecciona<br/>un área</div>
+          <div class="core-count" id="coreCount"></div>
+        </div>
+      </div>
+
+      <ul class="legend" id="legend"></ul>
+    </section>
+
+    <aside class="panel" id="panel" aria-live="polite">
+      <header class="panel-head">
+        <div class="panel-tag" id="panelTag">—</div>
+        <h2 class="panel-title" id="panelTitle">Selecciona un área</h2>
+        <p class="panel-sub" id="panelSub">Pasa el cursor o toca un segmento para descubrir las socias de cada categoría.</p>
+      </header>
+      <div class="panel-body" id="panelBody">
+        <div class="panel-empty">
+          <svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="20" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="3 4"/></svg>
+          <p>Esperando interacción…</p>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <footer class="site-foot">
+    <span>© E+Minera</span>
+    <span class="dot">·</span>
+    <span>Red de Socias</span>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+{
+  "categories": [
+    {
+      "id": "industrial",
+      "name": "Servicios Industriales",
+      "subtitle": "Industrial · Innovación · Tech",
+      "color": "#F06432",
+      "colorSoft": "rgba(240,100,50,0.18)",
+      "angleStart": 225,
+      "members": [
+        {
+          "name": "Pamela Garrido",
+          "company": "EMESER",
+          "area": "Industrial"
+        },
+        {
+          "name": "Cristina Araya",
+          "company": "Araya Briones",
+          "area": "Industrial"
+        },
+        {
+          "name": "Georgina Kong",
+          "company": "Servicios Kong",
+          "area": "Industrial"
+        },
+        {
+          "name": "Martha Aguilera",
+          "company": "Electroram",
+          "area": "Industrial"
+        },
+        {
+          "name": "Alejandra Gimenez",
+          "company": "Novamine",
+          "area": "Industrial"
+        },
+        {
+          "name": "Valeria Castillo",
+          "company": "Gruval",
+          "area": "Industrial"
+        },
+        {
+          "name": "Francisca Tello",
+          "company": "Tegmin",
+          "area": "Industrial"
+        },
+        {
+          "name": "Paulina González",
+          "company": "Robotika",
+          "area": "Innovación · Tech"
+        },
+        {
+          "name": "Yocelin Quiroz",
+          "company": "C&N Obras Civiles",
+          "area": "Industrial"
+        },
+        {
+          "name": "Giovanna Soriano",
+          "company": "Servicios LYG",
+          "area": "Industrial"
+        },
+        {
+          "name": "Marjorie Trivick",
+          "company": "Trivick Group / Future of Data",
+          "area": "Innovación · Tech"
+        },
+        {
+          "name": "Virla Ibáñez",
+          "company": "Provee Spa",
+          "area": "Industrial"
+        },
+        {
+          "name": "Yasna Sepúlveda",
+          "company": "Alpha Support",
+          "area": "Industrial"
+        },
+        {
+          "name": "Katharina Haltenhoff",
+          "company": "Mueblería La Americana",
+          "area": "Industrial"
+        },
+        {
+          "name": "Teresa Gajardo",
+          "company": "TMETAL",
+          "area": "Industrial"
+        },
+        {
+          "name": "Karina Palma",
+          "company": "Manlim Spa",
+          "area": "Innovación · Tech"
+        }
+      ]
+    },
+    {
+      "id": "asesorias",
+      "name": "Asesorías",
+      "subtitle": "Consultoría · Estrategia",
+      "color": "#BE78C8",
+      "colorSoft": "rgba(190,120,200,0.18)",
+      "angleStart": 135,
+      "members": [
+        {
+          "name": "Paola Quezada",
+          "company": "Agencia Redes",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Monica Herrera",
+          "company": "Startmomentum Consulting",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Tatiana Martinez",
+          "company": "MIJ Soluciones Contables",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Andrea Vivanco",
+          "company": "Training Centre",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Tatiana Sanhueza",
+          "company": "TAT Engineer IA",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Marcela Maldonado",
+          "company": "Ulter SpA",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Liseth Otero",
+          "company": "Grupo Lidero con Valentía",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Paola Mardones",
+          "company": "Asesoramiento PMA",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Ruth Rodríguez",
+          "company": "SMI Chile",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Karla Sepúlveda",
+          "company": "Consultora",
+          "area": "Asesorías"
+        },
+        {
+          "name": "Mary Valdes",
+          "company": "Consultora",
+          "area": "Asesorías"
+        }
+      ]
+    },
+    {
+      "id": "salud",
+      "name": "Salud",
+      "subtitle": "Bienestar · Clínica",
+      "color": "#F0B428",
+      "colorSoft": "rgba(240,180,40,0.18)",
+      "angleStart": 315,
+      "members": [
+        {
+          "name": "Lidia Rubio",
+          "company": "Clínica Alura",
+          "area": "Salud"
+        },
+        {
+          "name": "Odette Quijada",
+          "company": "Aurora Med",
+          "area": "Salud"
+        }
+      ]
+    },
+    {
+      "id": "circular",
+      "name": "Economía Circular",
+      "subtitle": "Sostenibilidad · Reciclaje",
+      "color": "#14BEB4",
+      "colorSoft": "rgba(20,190,180,0.18)",
+      "angleStart": 45,
+      "members": [
+        {
+          "name": "Rosa Ester Salazar",
+          "company": "GRUPO ROES / ECOCIR",
+          "area": "Economía Circular"
+        }
+      ]
+    }
+  ]
+}
