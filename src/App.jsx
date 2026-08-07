@@ -712,42 +712,6 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [selectedNews, setSelectedNews] = useState(null);
   const parallaxOffset = useParallax(0.3);
-  const [showPromoPopup, setShowPromoPopup] = useState(false);
-
-  useEffect(() => {
-    const hasSeenPopup = sessionStorage.getItem('eminera_exponor_popup_seen');
-    if (!hasSeenPopup) {
-      const timer = setTimeout(() => {
-        setShowPromoPopup(true);
-      }, 1200);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        setShowPromoPopup(false);
-        sessionStorage.setItem('eminera_exponor_popup_seen', 'true');
-      }
-    };
-    if (showPromoPopup) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
-    };
-  }, [showPromoPopup]);
-
-  const closePromoPopup = () => {
-    setShowPromoPopup(false);
-    sessionStorage.setItem('eminera_exponor_popup_seen', 'true');
-  };
-
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -1183,32 +1147,6 @@ export default function App() {
         </div>
       </footer>
 
-      {showPromoPopup && (
-        <div 
-          className="fixed inset-0 z-[150] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
-          onClick={closePromoPopup}
-        >
-          <div 
-            className="relative max-w-[500px] w-full bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-white/10 animate-scale-up"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button 
-              onClick={closePromoPopup}
-              className="absolute top-4 right-4 p-2 rounded-full bg-black/60 hover:bg-black/80 text-white transition-all duration-300 z-50 border border-white/10 hover:scale-110"
-              aria-label="Cerrar"
-            >
-              <X className="w-5 h-5" />
-            </button>
-            <div className="relative">
-              <img 
-                src="/exponor-popup.jpg" 
-                alt="E+Minera en Exponor 2026" 
-                className="w-full h-auto object-cover select-none"
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </div >
   );
 }
