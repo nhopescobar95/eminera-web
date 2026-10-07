@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "name": "Pamela Garrido",
+    "company": "EMESER S.A.",
+    "url": "https://www.emeser.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "83.02083%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Rosa Ester Salazar",
+    "company": "Grupo ROES",
+    "url": "https://www.gruporoes.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Mary Valdés",
+    "company": "Ecomina",
+    "url": "https://www.ecomina.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Karina Palma",
+    "company": "MANLIM",
+    "url": "https://www.manlimspa.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Virla Ibáñez",
+    "company": "Provee SpA",
+    "url": "https://www.provee.cl",
+    "hotspot": {
+      "left": "11.48148%",
+      "top": "82.76042%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Georgina Kong",
+    "company": "SERVIKONG LTDA.",
+    "url": "https://www.servikong.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Paola Quezada",
+    "company": "Agencia Redes",
+    "url": "https://www.agenciaredes.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Paulina Gonzalez",
+    "company": "Robotika",
+    "url": "https://www.robotika.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Yasna Sepulveda",
+    "company": "Alpha Support",
+    "url": "https://www.alphasupport.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Andrea Vivanco",
+    "company": "Training Centre",
+    "url": "https://www.trainingcentre.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 11,
+    "name": "Lidia Rubio Aravena",
+    "company": "Clínica Alura",
+    "url": "https://www.clinicaalura.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 12,
+    "name": "Liseth Otero",
+    "company": "Grupo Lidero con Valentía",
+    "url": "https://www.instagram.com/grupolideroconvalentia/",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 13,
+    "name": "Odette Quijada",
+    "company": "Aurora Med",
+    "url": "https://www.auroramed.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  },
+  {
+    "id": 14,
+    "name": "Yocelin Quiroz",
+    "company": "C&N Obras Civiles",
+    "url": "https://www.cynobrasciviles.cl",
+    "hotspot": {
+      "left": "10.00000%",
+      "top": "81.92708%",
+      "width": "63.05556%",
+      "height": "7.81250%"
+    }
+  }
+]

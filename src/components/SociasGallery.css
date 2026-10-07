@@ -1,0 +1,28 @@
+.socias-gallery { scroll-margin-top: 100px; background: #f8fafc; padding: clamp(64px, 7vw, 96px) 0; }
+.socias-inner { width: calc(100% - 32px); max-width: 1200px; margin-inline: auto; min-width: 0; }
+.socias-header { text-align: center; max-width: 680px; margin: 0 auto 32px; }
+.socias-eyebrow { color: #087f78; font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px; }
+.socias-header h2 { color: #1e293b; font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.12; letter-spacing: -.04em; margin-bottom: 16px; }
+.socias-header h2 span { font-weight: 800; background: linear-gradient(135deg, #f06432, #b364c9 50%, #087f78); background-clip: text; -webkit-background-clip: text; color: transparent; }
+.socias-header > p:last-child { color: #64748b; font-size: 1rem; line-height: 1.7; }
+.socias-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-inline: 8px; margin-bottom: 8px; }
+.socias-toolbar > p { color: #1e293b; font-size: .875rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.socias-toolbar > p span { color: #64748b; font-weight: 400; }
+.socias-arrows { display: flex; gap: 8px; }
+.socias-arrows button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #cbd5e1; background: white; color: #1e293b; transition: background .2s, border-color .2s; }
+.socias-arrows button:hover:not(:disabled) { background: #e0f8f4; border-color: #087f78; }
+.socias-arrows button:disabled { opacity: .35; cursor: default; }
+.socias-track { display: flex; gap: 24px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 12px 8px 24px; cursor: grab; touch-action: pan-x pan-y; }
+.socias-track::-webkit-scrollbar { display: none; }
+.socias-track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+.socia-card { position: relative; flex: 0 0 calc((100% - 48px) / 3); min-width: 0; aspect-ratio: 9 / 16; scroll-snap-align: start; border-radius: 18px; box-shadow: 0 8px 20px -8px #1e293b30; transition: transform .25s, box-shadow .25s; }
+.socia-card img { display: block; width: 100%; height: auto; border-radius: inherit; user-select: none; }
+.socia-hotspot { position: absolute; display: block; border-radius: 999px; cursor: pointer; transition: box-shadow .2s; }
+.socia-hotspot:hover { box-shadow: 0 0 0 3px #ffffff90; }
+.socia-hotspot:focus-visible { outline: 3px solid white; outline-offset: 3px; box-shadow: 0 0 0 7px #1e293b; }
+.socias-arrows button:focus-visible, .socias-track:focus-visible { outline: 3px solid #087f78; outline-offset: 3px; }
+.socias-hint { text-align: center; color: #64748b; font-size: .8rem; line-height: 1.6; margin-top: 4px; }
+@media (hover: hover) and (pointer: fine) { .socia-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -8px #1e293b40; } }
+@media (max-width: 1099px) { .socia-card { flex-basis: calc((100% - 24px) / 2); } }
+@media (max-width: 639px) { .socia-card { flex-basis: 100%; } .socias-track { gap: 16px; } .socias-header { margin-bottom: 24px; } .socias-header > p:last-child { font-size: .925rem; } .socias-eyebrow { font-size: .65rem; letter-spacing: .14em; } }
+@media (prefers-reduced-motion: reduce) { .socia-card, .socia-hotspot, .socias-arrows button { transition: none; } .socia-card:hover { transform: none; } }
